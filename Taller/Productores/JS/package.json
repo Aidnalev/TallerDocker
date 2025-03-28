@@ -1,0 +1,9 @@
+{
+  "name": "rabbitmq-producer",
+  "version": "1.0.0",
+  "description": "Productor de mensajes en RabbitMQ usando Node.js",
+  "main": "producer.js",
+  "dependencies": {
+    "amqplib": "^0.10.3"
+  }
+}

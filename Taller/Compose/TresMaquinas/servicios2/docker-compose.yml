@@ -1,0 +1,32 @@
+services:
+  productor_js:
+    image: "aidnalev/is3taller:js-producer"
+    container_name: productor_js
+    environment:
+      - RABBITMQ_HOST=10.6.101.124
+    networks:
+      - my_network
+    restart: always
+
+  consumidor_python:
+    image: "aidnalev/is3taller:python-consumer"
+    container_name: consumidor_python
+    environment:
+      - RABBITMQ_HOST=10.6.101.124
+    networks:
+      - my_network
+    restart: always
+
+  consumidor_c:
+    image: "aidnalev/is3taller:c-consumer"
+    container_name: consumidor_c
+    environment:
+      - RABBITMQ_HOST=10.6.101.124
+    networks:
+      - my_network
+    restart: always
+
+networks:
+  my_network:
+    driver: bridge
+

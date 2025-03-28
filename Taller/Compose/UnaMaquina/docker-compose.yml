@@ -1,0 +1,91 @@
+services:
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"  # Puerto para la comunicación AMQP
+      - "15672:15672"  # Interfaz web de RabbitMQ
+    networks:
+      - my_network
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  productor_c:
+    image: "aidnalev/is3taller:c-producer"
+    container_name: productor_c
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - my_network
+    restart: always
+    environment:
+      - RABBITMQ_HOST=10.6.101.124
+
+  productor_python:
+    image: "aidnalev/is3taller:python-producer"
+    container_name: productor_python
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - my_network
+    restart: always
+    environment:
+      - RABBITMQ_HOST=10.6.101.124
+
+  productor_js:
+    image: "aidnalev/is3taller:js-producer"
+    container_name: productor_js
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - my_network
+    restart: always
+    environment:
+      - RABBITMQ_HOST=10.6.101.124
+
+  consumidor_python:
+    image: "aidnalev/is3taller:python-consumer"
+    container_name: consumidor_python
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - my_network
+    restart: always
+    environment:
+      - RABBITMQ_HOST=10.6.101.124
+
+  consumidor_js:
+    image: "aidnalev/is3taller:js-consumer"
+    container_name: consumidor_js
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - my_network
+    restart: always
+    environment:
+      - RABBITMQ_HOST=10.6.101.124
+
+  consumidor_c:
+    image: "aidnalev/is3taller:c-consumer"
+    container_name: consumidor_c
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - my_network
+    restart: always
+    environment:
+      - RABBITMQ_HOST=10.6.101.124
+
+networks:
+  my_network:
+    driver: bridge
+
