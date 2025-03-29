@@ -71,14 +71,37 @@ El procedimiento para cualquiera de los tres escenarios es básicamente el mismo
         ```bash
         docker-compose up
         ```
- Cabe resaltar que, si por ejemplo, el RabbitMQ de host para los escenarios de 2 y 3 máquinas al tiempo deben detenerse y eliminarse los contenedores que tendrían el mismo nombre (esto también aplica para pasar del escenario 2 a 3, en la segunda máquina virtual donde se ejecuten todos los servicios, a la hora de ejecutarlo en el tercer escenario estos deben ser detenidos y eliminados) o bien, realizar el despliegue con
- ```bash
+## Consideraciones para el despliegue en múltiples máquinas
+
+Si estás implementando los escenarios de **2 y 3 máquinas**, ten en cuenta lo siguiente:
+
+- Es necesario detener y eliminar los contenedores de RabbitMQ en el host antes de desplegar en múltiples máquinas, ya que podrían tener el mismo nombre.
+- Esto también aplica cuando pasas del escenario **2 máquinas → 3 máquinas**.  
+  En la segunda máquina virtual donde se ejecutan todos los servicios, antes de desplegar el tercer escenario, **debes detener y eliminar los contenedores previos**.
+
+### Para detener y eliminar los contenedores
+Para detener todos los contenedores:  
+```bash
+docker stop $(docker ps -q)
+```
+Para eliminar todos los contenedores detenidos
+```bash
+docker container prune
+```
+### Despliegue con Docker Compose  
+
+Para iniciar los contenedores en segundo plano:
+
+```bash
 docker-compose up -d
 ```
-y revisar los logs con 
+Para revisar los logs en tiempo real:
+
 ```bash
 docker-compose logs -f
 ```
+
+
 
 ## 📄 Notas Finales
 
