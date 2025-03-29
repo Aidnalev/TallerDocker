@@ -52,7 +52,7 @@ El procedimiento para cualquiera de los tres escenarios es básicamente el mismo
    - **Dos máquinas:**
      1. Ejecuta en la máquina que alojará RabbitMQ:
         ```bash
-        docker-compose up -d
+        docker-compose up
         ```
      2. Ejecuta en la otra máquina (donde estarán productores/consumidores):
         ```bash
@@ -61,7 +61,7 @@ El procedimiento para cualquiera de los tres escenarios es básicamente el mismo
    - **Tres máquinas:**
      1. Ejecuta en la máquina de RabbitMQ:
         ```bash
-        docker-compose up -d
+        docker-compose up
         ```
      2. Ejecuta en la máquina `servicios1`:
         ```bash
@@ -71,6 +71,14 @@ El procedimiento para cualquiera de los tres escenarios es básicamente el mismo
         ```bash
         docker-compose up
         ```
+ Cabe resaltar que, si por ejemplo, el RabbitMQ de host para los escenarios de 2 y 3 máquinas al tiempo deben detenerse y eliminarse los contenedores que tendrían el mismo nombre (esto también aplica para pasar del escenario 2 a 3, en la segunda máquina virtual donde se ejecuten todos los servicios, a la hora de ejecutarlo en el tercer escenario estos deben ser detenidos y eliminados) o bien, realizar el despliegue con
+ ```bash
+docker-compose up -d
+```
+y revisar los logs con 
+```bash
+docker-compose logs -f
+```
 
 ## 📄 Notas Finales
 
