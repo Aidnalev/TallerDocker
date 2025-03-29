@@ -5,7 +5,12 @@ Este es el taller de Docker terminado. Consiste en un ejercicio de contenedores 
 ### 🔹 Escenarios Implementados
 1. **Una sola máquina:** RabbitMQ, productores y consumidores en la misma máquina.
 2. **Dos máquinas:** RabbitMQ en una máquina independiente y los productores/consumidores en otra.
-3. **Tres máquinas:** RabbitMQ en una máquina, y los productores/consumidores distribuidos en dos máquinas diferentes.
+4. **Tres máquinas:** RabbitMQ en una máquina, y los productores/consumidores distribuidos en dos máquinas diferentes.
+
+## 🔗 Enlaces
+
+**GitHub** [Aidnalev/TallerDocker: Taller de docker](https://github.com/Aidnalev/TallerDocker).  
+**Video** [Taller Docker - RabbitMQ](https://youtu.be/NoLVDHFKlVQ) (YouTube).
 
 ## 📂 Estructura del Repositorio
 
@@ -71,7 +76,7 @@ El procedimiento para cualquiera de los tres escenarios es básicamente el mismo
         ```bash
         docker-compose up
         ```
-## Consideraciones para el despliegue en múltiples máquinas
+## ⚙️ Consideraciones para el despliegue en múltiples máquinas
 
 Si estás implementando los escenarios de **2 y 3 máquinas**, ten en cuenta lo siguiente:
 
